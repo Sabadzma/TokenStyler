@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // In development mode, watch for token changes
-    // tokenParser.watchForChanges();
+    tokenParser.watchForChanges();
 });
 
 /**

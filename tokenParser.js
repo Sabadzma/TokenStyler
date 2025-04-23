@@ -122,7 +122,8 @@ class TokenParser {
         // In a real application, you would use a server-side solution or websockets
         setInterval(() => {
             this.loadTokens();
-        }, 5000); // Check every 5 seconds
+            console.log('Checking for token updates...');
+        }, 3000); // Check every 3 seconds
     }
 }
 
