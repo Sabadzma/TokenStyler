@@ -3,7 +3,7 @@
  * Initializes the token parser and sets up the chart
  */
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize token parser
+    // Initialize token parser - load tokens immediately on page load
     tokenParser.loadTokens().then(() => {
         console.log('Tokens loaded successfully');
         

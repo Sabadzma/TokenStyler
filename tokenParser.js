@@ -7,6 +7,12 @@ class TokenParser {
         this.tokens = null;
         this.semanticTokens = null;
         this.cssVariables = {};
+        
+        // Force cache busting for tokens.json to ensure fresh data on each page load
+        this.fetchOptions = { 
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache' }
+        };
     }
 
     /**
@@ -15,7 +21,8 @@ class TokenParser {
      */
     async loadTokens() {
         try {
-            const response = await fetch('tokens.json');
+            // Use no-cache fetch options to always get fresh data
+            const response = await fetch('tokens.json', this.fetchOptions);
             if (!response.ok) {
                 throw new Error(`Failed to load tokens: ${response.status} ${response.statusText}`);
             }
@@ -23,6 +30,9 @@ class TokenParser {
             const data = await response.json();
             this.tokens = data.tokens;
             this.semanticTokens = this.tokens.semantic;
+            
+            // Clear previous CSS variables before processing new ones
+            this.cssVariables = {};
             
             // Process and generate CSS variables
             this.processTokens();
